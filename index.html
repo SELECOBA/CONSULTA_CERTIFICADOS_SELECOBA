@@ -41,7 +41,6 @@
       fetch(`${WEB_APP_URL}?codigo=${encodeURIComponent(codigo)}`)
         .then(res => res.json())
         .then(data => {
-          i// ... dentro de tu .then(data => { ...
           if (data.encontrado) {
             box.innerHTML = `
               <p><strong>CÓDIGO:</strong> ${data.codigo}</p>
