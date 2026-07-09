@@ -1,61 +1,197 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Buscador de Mantenimientos</title>
-  <style>
-    body { font-family: sans-serif; background: #f4f6f9; display: flex; justify-content: center; padding-top: 50px; }
-    .search-box { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 350px; }
-    input, button { width: 100%; padding: 10px; margin: 5px 0; border: 1px solid #ddd; border-radius: 5px; }
-    .btn-buscar { background: #1a73e8; color: white; cursor: pointer; }
-    #resultadoBox { margin-top: 15px; padding: 10px; background: #eee; display: none; }
-    #loginBox { display: none; margin-top: 10px; border-top: 1px solid #ccc; padding-top: 10px; }
-  </style>
+<meta charset="UTF-8">
+<title>Buscador de Mantenimientos</title>
+
+<style>
+body{
+    font-family:Arial,sans-serif;
+    background:#f4f6f9;
+    display:flex;
+    justify-content:center;
+    margin-top:50px;
+}
+
+.search-box{
+    width:380px;
+    background:#fff;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+}
+
+input,button{
+    width:100%;
+    padding:10px;
+    margin:6px 0;
+    border-radius:5px;
+    border:1px solid #ccc;
+    box-sizing:border-box;
+}
+
+button{
+    cursor:pointer;
+}
+
+.btn-buscar{
+    background:#1a73e8;
+    color:white;
+}
+
+#btnInfo{
+    background:#34a853;
+    color:white;
+    display:none;
+}
+
+#resultadoBox{
+    display:none;
+    background:#eee;
+    padding:12px;
+    border-radius:5px;
+    margin-top:10px;
+}
+
+#loginBox{
+    display:none;
+    margin-top:15px;
+    border-top:1px solid #ccc;
+    padding-top:15px;
+}
+</style>
+
 </head>
 <body>
 
 <div class="search-box">
-  <h3>Buscador de Mantenimientos</h3>
-  <input type="text" id="codigoInput" placeholder="Código...">
-  <button class="btn-buscar" onclick="buscar(true)">Buscar Registro</button>
-  
-  <div id="resultadoBox"></div>
-  <button id="btnInfo" style="display:none; background:#34a853; color:white;" onclick="document.getElementById('loginBox').style.display='block'">Más información</button>
-  
-  <div id="loginBox">
-    <input type="text" id="user" placeholder="Usuario">
-    <input type="password" id="pass" placeholder="Contraseña">
-    <button onclick="buscar(false)">Validar Acceso</button>
-  </div>
+
+<h2>Buscador de Mantenimientos</h2>
+
+<input
+id="codigoInput"
+placeholder="Ingrese código">
+
+<button class="btn-buscar" onclick="buscar(true)">
+Buscar Registro
+</button>
+
+<div id="resultadoBox"></div>
+
+<button
+id="btnInfo"
+onclick="mostrarLogin()">
+Más información
+</button>
+
+<div id="loginBox">
+
+<input
+id="user"
+placeholder="Usuario">
+
+<input
+id="pass"
+type="password"
+placeholder="Contraseña">
+
+<button onclick="buscar(false)">
+Validar Acceso
+</button>
+
+</div>
+
 </div>
 
 <script>
-  const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzL0vWwIODt0JRyZIdqBFAmXR50w8AVztY8dn2negkQotHog-IyKpITm5ophOGduOwQkg/exec";
 
-  // Evento para tecla ENTER
-  document.getElementById("codigoInput").addEventListener("keypress", function(e) {
-    if (e.key === "Enter") buscar(true);
-  });
+const WEB_APP_URL="https://script.google.com/macros/s/AKfycbzL0vWwIODt0JRyZIdqBFAmXR50w8AVztY8dn2negkQotHog-IyKpITm5ophOGduOwQkg/exec";
 
-  function buscar(esPublico) {
-    const cod = document.getElementById("codigoInput").value;
-    const url = `${WEB_APP_URL}?accion=${esPublico ? 'buscar' : 'info'}&codigo=${cod}&user=${document.getElementById('user').value}&pass=${document.getElementById('pass').value}`;
+document.getElementById("codigoInput")
+.addEventListener("keydown",function(e){
 
-    fetch(url, { mode: 'cors' })
-      .then(res => res.json())
-      .then(data => {
-        if (esPublico && data.encontrado) {
-          document.getElementById("resultadoBox").style.display = "block";
-          document.getElementById("resultadoBox").innerHTML = `Cliente: ${data.cliente}<br>Equipo: ${data.equipo_intervenido}`;
-          document.getElementById("btnInfo").style.display = "block";
-        } else if (!esPublico && data.encontrado) {
-          alert(data.info_privada);
-        } else {
-          alert(data.error || "No encontrado");
-        }
-      })
-      .catch(() => alert("Error de conexión."));
-  }
+if(e.key==="Enter"){
+buscar(true);
+}
+
+});
+
+function mostrarLogin(){
+
+document.getElementById("loginBox").style.display="block";
+
+}
+
+async function buscar(publico){
+
+const codigo=document.getElementById("codigoInput").value.trim();
+
+if(codigo===""){
+alert("Ingrese un código.");
+return;
+}
+
+let url=`${WEB_APP_URL}?accion=${publico?"buscar":"info"}&codigo=${encodeURIComponent(codigo)}`;
+
+if(!publico){
+
+url+=`&user=${encodeURIComponent(document.getElementById("user").value)}`;
+url+=`&pass=${encodeURIComponent(document.getElementById("pass").value)}`;
+
+}
+
+try{
+
+const response=await fetch(url);
+
+const data=await response.json();
+
+if(publico){
+
+if(data.encontrado){
+
+document.getElementById("resultadoBox").style.display="block";
+
+document.getElementById("resultadoBox").innerHTML=`
+<b>Cliente:</b> ${data.cliente}<br>
+<b>Equipo:</b> ${data.equipo_intervenido}<br>
+<b>Fecha Mantenimiento:</b> ${data.fecha_mnto}<br>
+<b>Próximo:</b> ${data.fecha_p_mnto}
+`;
+
+document.getElementById("btnInfo").style.display="block";
+
+}else{
+
+alert("Registro no encontrado.");
+
+}
+
+}else{
+
+if(data.encontrado){
+
+alert(data.info_privada);
+
+}else{
+
+alert(data.error);
+
+}
+
+}
+
+}catch(err){
+
+console.error(err);
+
+alert("Error de conexión.");
+
+}
+
+}
+
 </script>
+
 </body>
 </html>
