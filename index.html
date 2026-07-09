@@ -323,19 +323,50 @@ buscar();
 
 
 
-function jsonp(url,callback){
+function jsonp(url, callback){
 
 
-const script=document.createElement("script");
+    const script = document.createElement("script");
 
 
-script.src=url+"&callback="+callback;
+    script.src = url 
+    + "&callback="
+    + callback
+    + "&t="
+    + Date.now();
 
 
-document.body.appendChild(script);
+
+    script.onload = function(){
+
+        script.remove();
+
+    };
 
 
-script.remove();
+
+    script.onerror = function(){
+
+
+        script.remove();
+
+
+        document
+        .getElementById("spinner")
+        .style.display="none";
+
+
+        alert(
+        "No se pudo conectar con el servidor."
+        );
+
+
+    };
+
+
+
+    document.body.appendChild(script);
+
 
 
 }
@@ -358,12 +389,25 @@ if(!codigo)return;
 document
 .getElementById("spinner")
 .style.display="block";
+let tiempoEspera=setTimeout(function(){
 
+
+    document
+    .getElementById("spinner")
+    .style.display="none";
+
+
+    alert(
+    "La consulta está tardando demasiado. Verifique su conexión."
+    );
+
+
+},10000);
 
 
 
 window.respuesta=function(data){
-
+clearTimeout(tiempoEspera);
 
 document
 .getElementById("spinner")
