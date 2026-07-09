@@ -2,76 +2,87 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Consulta de Certificados</title>
 
 <style>
+
 body{
-    margin:0;
     font-family:Arial,Helvetica,sans-serif;
-    background:#f2f2f2;
+    background:#f4f6f9;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    padding-top:60px;
 }
 
-.contenedor{
-    width:420px;
-    margin:60px auto;
+.search-box{
+
+    width:380px;
     background:#fff;
-    padding:30px;
-    border-radius:10px;
-    box-shadow:0 0 15px rgba(0,0,0,.15);
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,.15);
+    padding:25px;
+
 }
 
-h2{
-    text-align:center;
-}
+input,button{
 
-input{
     width:100%;
-    padding:12px;
-    margin:8px 0;
     box-sizing:border-box;
+    padding:10px;
+    margin-top:10px;
+    border-radius:5px;
+    border:1px solid #ccc;
+
 }
 
 button{
-    width:100%;
-    padding:12px;
-    margin-top:10px;
+
     cursor:pointer;
-    border:none;
-    color:#fff;
-    border-radius:5px;
+
 }
 
 .buscar{
-    background:#1976d2;
+
+    background:#1a73e8;
+    color:white;
+
 }
 
 .info{
-    background:#2e7d32;
+
+    background:#34a853;
+    color:white;
     display:none;
+
 }
 
 #resultado{
-    display:none;
-    margin-top:20px;
-    padding:15px;
-    background:#eeeeee;
+
+    margin-top:15px;
+    padding:10px;
     border-radius:5px;
+    background:#efefef;
+    display:none;
+
 }
 
 #login{
+
     display:none;
-    margin-top:20px;
+    margin-top:15px;
+
 }
+
 </style>
 
 </head>
 
 <body>
 
-<div class="contenedor">
+<div class="search-box">
 
-<h2>Consulta de Certificados</h2>
+<h2>Consulta de Mantenimiento</h2>
 
 <input
 id="codigo"
@@ -79,8 +90,10 @@ placeholder="Ingrese código">
 
 <button
 class="buscar"
-onclick="buscar(true)">
+onclick="buscarPublico()">
+
 Buscar
+
 </button>
 
 <div id="resultado"></div>
@@ -89,7 +102,9 @@ Buscar
 id="btnInfo"
 class="info"
 onclick="mostrarLogin()">
+
 Más información
+
 </button>
 
 <div id="login">
@@ -103,10 +118,10 @@ id="pass"
 type="password"
 placeholder="Contraseña">
 
-<button
-class="buscar"
-onclick="buscar(false)">
+<button onclick="buscarPrivado()">
+
 Ingresar
+
 </button>
 
 </div>
@@ -115,66 +130,36 @@ Ingresar
 
 <script>
 
-const WEB_APP="https://script.google.com/macros/s/AKfycbzL0vWwIODt0JRyZIdqBFAmXR50w8AVztY8dn2negkQotHog-IyKpITm5ophOGduOwQkg/exec";
+const URL="https://script.google.com/macros/s/AKfycbzL0vWwIODt0JRyZIdqBFAmXR50w8AVztY8dn2negkQotHog-IyKpITm5ophOGduOwQkg/exec";
 
-function mostrarLogin(){
-
-document.getElementById("login").style.display="block";
-
-}
-
-async function buscar(publico){
+async function buscarPublico(){
 
 const codigo=document.getElementById("codigo").value.trim();
 
-if(codigo==""){
-
-alert("Ingrese un código");
-
-return;
-
-}
-
-let url=WEB_APP+
-"?accion="+(publico?"buscar":"info")+
-"&codigo="+encodeURIComponent(codigo);
-
-if(!publico){
-
-url+="&user="+encodeURIComponent(document.getElementById("user").value);
-url+="&pass="+encodeURIComponent(document.getElementById("pass").value);
-
-}
-
-console.log("Consultando:");
-console.log(url);
-
 try{
 
-const response=await fetch(url,{
+const r=await fetch(URL+"?accion=buscar&codigo="+encodeURIComponent(codigo),{
+
 method:"GET",
-redirect:"follow"
+redirect:"follow",
+cache:"no-cache"
+
 });
 
-console.log(response);
+const data=await r.json();
 
-const texto=await response.text();
-
-console.log(texto);
-
-const data=JSON.parse(texto);
-
-if(publico){
+console.log(data);
 
 if(data.encontrado){
 
 document.getElementById("resultado").style.display="block";
 
-document.getElementById("resultado").innerHTML=
-"<b>Cliente:</b> "+data.cliente+"<br>"+
-"<b>Equipo:</b> "+data.equipo_intervenido+"<br>"+
-"<b>Fecha:</b> "+data.fecha_mnto+"<br>"+
-"<b>Próximo:</b> "+data.fecha_p_mnto;
+document.getElementById("resultado").innerHTML=`
+<b>Cliente:</b> ${data.cliente}<br>
+<b>Equipo:</b> ${data.equipo_intervenido}<br>
+<b>Fecha:</b> ${data.fecha_mnto}<br>
+<b>Próximo:</b> ${data.fecha_p_mnto}
+`;
 
 document.getElementById("btnInfo").style.display="block";
 
@@ -184,7 +169,49 @@ alert(data.error);
 
 }
 
-}else{
+}catch(e){
+
+console.error(e);
+alert(e);
+
+}
+
+}
+
+function mostrarLogin(){
+
+document.getElementById("login").style.display="block";
+
+}
+
+async function buscarPrivado(){
+
+const codigo=document.getElementById("codigo").value.trim();
+
+const user=document.getElementById("user").value;
+
+const pass=document.getElementById("pass").value;
+
+try{
+
+const r=await fetch(URL+
+
+"?accion=info"+
+"&codigo="+encodeURIComponent(codigo)+
+"&user="+encodeURIComponent(user)+
+"&pass="+encodeURIComponent(pass),
+
+{
+
+method:"GET",
+redirect:"follow",
+cache:"no-cache"
+
+});
+
+const data=await r.json();
+
+console.log(data);
 
 if(data.encontrado){
 
@@ -196,13 +223,10 @@ alert(data.error);
 
 }
 
-}
+}catch(e){
 
-}catch(error){
-
-console.error(error);
-
-alert(error);
+console.error(e);
+alert(e);
 
 }
 
