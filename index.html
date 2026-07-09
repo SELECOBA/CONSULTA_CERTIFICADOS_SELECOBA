@@ -2,7 +2,9 @@
 <html lang="es">
 
 <head>
-
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -325,29 +327,48 @@ buscar();
 
 function jsonp(url, callback){
 
+
     const script = document.createElement("script");
 
-    script.type = "text/javascript";
 
     script.src = url 
-    + "&callback=" 
+    + "&callback="
     + callback
-    + "&_="
-    + new Date().getTime();
+    + "&t="
+    + Date.now();
 
 
-    document.head.appendChild(script);
+
+    script.onload = function(){
+
+        script.remove();
+
+    };
 
 
-    setTimeout(function(){
 
-        if(script){
+    script.onerror = function(){
 
-            script.remove();
 
-        }
+        script.remove();
 
-    },15000);
+
+        document
+        .getElementById("spinner")
+        .style.display="none";
+
+
+        alert(
+        "No se pudo conectar con el servidor."
+        );
+
+
+    };
+
+
+
+    document.body.appendChild(script);
+
 
 
 }
@@ -388,7 +409,7 @@ let tiempoEspera=setTimeout(function(){
 
 
 window.respuesta=function(data){
-clearTimeout(tiempoEspera);
+
 
 document
 .getElementById("spinner")
