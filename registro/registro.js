@@ -250,11 +250,6 @@ tipo:
 tipo.value,
 
 
-fecha:
-
-fecha.value,
-
-
 observaciones:
 
 observaciones.value,
@@ -285,7 +280,6 @@ if(
 
 !datos.equipo ||
 
-!datos.fecha
 
 ){
 
@@ -439,8 +433,6 @@ oc.value="";
 equipo.value="";
 
 tipo.value="";
-
-fecha.value="";
 
 observaciones.value="";
 
