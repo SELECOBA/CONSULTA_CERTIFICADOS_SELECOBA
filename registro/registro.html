@@ -83,8 +83,8 @@ placeholder="Contraseña"
 
 <button
 
+id="btnLogin"
 class="btn azul"
-
 onclick="iniciarSesion()"
 
 >
@@ -93,29 +93,11 @@ Ingresar
 
 </button>
 
-
+<div id="mensajeLogin" 
+class="mensajeLogin">
 </div>
 
-
-
-
-
-<!-- USUARIO ACTIVO -->
-
-
-<div
-
-id="usuarioActivo"
-
-class="usuarioActivo"
-
->
-
 </div>
-
-
-
-
 
 
 
@@ -128,10 +110,19 @@ id="formulario"
 
 style="display:none;"
 
+>
+<!-- USUARIO ACTIVO -->
 
+
+<div
+
+id="usuarioActivo"
+
+class="usuarioActivo"
 
 >
 
+</div>
 
 
 <input
@@ -215,30 +206,17 @@ placeholder="Observaciones"
 
 <button
 
+id="btnGuardar"
+
 class="btn verde"
 
-onclick="registrar()"
-
->
+onclick="registrar()">
 
 Guardar mantenimiento
 
 </button>
 
 
-
-
-<div
-
-id="spinner"
-
-class="spinner"
-
->
-
-🔄 Guardando...
-
-</div>
 
 
 

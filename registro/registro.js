@@ -23,171 +23,75 @@ cargo:""
 
 async function iniciarSesion(){
 
+    const usuario = document.getElementById("usuario").value.trim();
+    const password = document.getElementById("password").value.trim();
 
+    const boton = document.getElementById("btnLogin");
+    const mensaje = document.getElementById("mensajeLogin");
 
-const usuario =
+    mensaje.style.display="none";
+    mensaje.innerHTML="";
 
-document
-.getElementById("usuario")
-.value.trim();
+    if(!usuario || !password){
+        mensaje.style.display="block";
+        mensaje.innerHTML="❌ Ingrese usuario y contraseña."
+        return;
+    }
 
+    boton.disabled = true;
+    boton.innerHTML = "🔄 Validando...";
 
+    try{
 
-const password =
+        const respuesta = await fetch(API,{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+                accion:"login",
+                usuario:usuario,
+                password:password
+            })
+        });
 
-document
-.getElementById("password")
-.value.trim();
+        const data = await respuesta.json();
 
+        if(data.encontrado){
 
+            sesion.usuario = data.usuario;
+            sesion.nombre = data.nombre;
+            sesion.cargo = data.cargo;
 
+            document.getElementById("loginBox").style.display = "none";
+            document.getElementById("formulario").style.display = "block";
 
-if(!usuario || !password){
+            document.getElementById("usuarioActivo").innerHTML =
+            `
+            Usuario: <b>${sesion.nombre}</b><br>
+            Cargo: ${sesion.cargo}
+            `;
 
-alert("Ingrese usuario y contraseña");
+        }else{
 
-return;
+            mensaje.style.display="block";
+            mensaje.innerHTML="❌ Usuario o contraseña incorrectos."
+
+        }
+
+    }catch(error){
+            console.error(error);
+            mensaje.style.display="block";
+            mensaje.innerHTML="❌ Error de conexión con el servidor."
+
+    }finally{
+
+        boton.disabled = false;
+        boton.innerHTML = "Ingresar";
+
+    }
 
 }
-
-
-
-
-
-try{
-
-
-
-const respuesta =
-
-await fetch(
-
-API,
-
-{
-
-method:"POST",
-
-headers:{
-
-"Content-Type":
-
-"application/json"
-
-},
-
-
-body:JSON.stringify({
-
-accion:"login",
-
-usuario:usuario,
-
-password:password
-
-})
-
-
-}
-
-);
-
-
-
-const data=
-
-await respuesta.json();
-
-
-
-
-if(data.encontrado){
-
-
-
-sesion.usuario=data.usuario;
-
-sesion.nombre=data.nombre;
-
-sesion.cargo=data.cargo;
-
-
-
-
-
-document
-
-.getElementById("loginBox")
-
-.style.display="none";
-
-
-
-
-document
-
-.getElementById("formulario")
-
-.style.display="block";
-
-
-
-
-document
-
-.getElementById("usuarioActivo")
-
-.innerHTML=
-
-`
-
-Usuario:
-
-<b>${sesion.nombre}</b>
-
-<br>
-
-Cargo:
-
-${sesion.cargo}
-
-`;
-
-
-
-}
-
-else{
-
-
-alert(data.mensaje);
-
-
-}
-
-
-
-}
-
-catch(error){
-
-console.error(error);
-
-alert(
-error.message
-);
-
-}
-
-
-}
-
-
-
-
-
-
-
 
 
 async function registrar(){
@@ -305,14 +209,13 @@ return;
 
 }
 
+const boton =
+document.getElementById("btnGuardar");
 
+boton.disabled = true;
 
-
-
-
-document
-.getElementById("spinner")
-.style.display="block";
+boton.innerHTML =
+"Guardando...";
 
 
 
@@ -421,13 +324,10 @@ alert(
 
 finally{
 
+boton.disabled = false;
 
-document
-
-.getElementById("spinner")
-
-.style.display="none";
-
+boton.innerHTML =
+"Guardar mantenimiento";
 
 }
 
