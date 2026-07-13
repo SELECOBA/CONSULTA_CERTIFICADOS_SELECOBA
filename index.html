@@ -7,21 +7,30 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
 <title>
-Consulta Certificados SELECOBA
+SELECOBA - Sistema de Gestión
 </title>
+
 
 
 <style>
 
+
 *{
+
 box-sizing:border-box;
+
 }
+
 
 
 body{
 
+
 margin:0;
+
+min-height:100vh;
 
 font-family:'Segoe UI',Arial,sans-serif;
 
@@ -31,166 +40,229 @@ display:flex;
 
 justify-content:center;
 
-padding:30px;
+align-items:center;
+
+padding:25px;
+
 
 }
+
 
 
 
 .container{
 
+
 width:100%;
 
 max-width:420px;
 
+
 }
+
+
 
 
 
 .logo{
 
+
 text-align:center;
 
-margin-bottom:20px;
+margin-bottom:15px;
+
 
 }
+
 
 
 .logo img{
 
+
 width:180px;
 
+
 }
+
+
+
+h1{
+
+
+text-align:center;
+
+font-size:26px;
+
+color:#1e293b;
+
+margin:10px 0;
+
+
+}
+
+
+
+.subtitulo{
+
+
+text-align:center;
+
+color:#64748b;
+
+font-size:18px;
+
+margin-bottom:30px;
+
+
+}
+
 
 
 
 .card{
 
+
 background:white;
+
+border-radius:20px;
 
 padding:25px;
 
-border-radius:18px;
+box-shadow:
 
-box-shadow:0 10px 30px rgba(0,0,0,.12);
+0 10px 30px rgba(0,0,0,.12);
+
 
 }
 
 
 
-h2{
-
-text-align:center;
-
-color:#1e293b;
-
-}
 
 
-
-input,button{
-
-width:100%;
-
-padding:13px;
-
-margin-top:12px;
-
-border-radius:10px;
-
-border:1px solid #ddd;
-
-font-size:16px;
-
-}
+.opcion{
 
 
+display:flex;
 
-button{
+align-items:center;
 
-cursor:pointer;
-
-border:none;
-
-}
-
-
-
-.buscar{
-
-background:#0057b8;
-
-color:white;
-
-}
-
-
-
-.info{
-
-background:#16a34a;
-
-color:white;
-
-display:none;
-
-}
-
-
-
-.spinner{
-
-display:none;
-
-text-align:center;
-
-margin-top:15px;
-
-}
-
-
-
-#resultado{
-
-display:none;
-
-margin-top:20px;
+gap:18px;
 
 padding:20px;
 
+margin-bottom:20px;
+
 border-radius:15px;
 
-}
+text-decoration:none;
 
+color:#1e293b;
 
+background:#f8fafc;
 
-.ok{
+border:1px solid #e2e8f0;
 
-background:#dcfce7;
+transition:.2s;
 
-border:2px solid #22c55e;
-
-}
-
-
-
-.error{
-
-background:#fee2e2;
-
-border:2px solid #ef4444;
 
 }
 
 
 
-.login{
+.opcion:hover{
 
-display:none;
 
-margin-top:20px;
+transform:translateY(-3px);
+
+box-shadow:
+
+0 5px 15px rgba(0,0,0,.10);
+
 
 }
+
+
+
+
+
+.icono{
+
+
+font-size:40px;
+
+
+}
+
+
+
+
+
+.titulo{
+
+
+font-size:20px;
+
+font-weight:bold;
+
+}
+
+
+
+.descripcion{
+
+
+font-size:14px;
+
+color:#64748b;
+
+margin-top:5px;
+
+}
+
+
+
+
+
+
+
+.consultar{
+
+
+border-left:6px solid #0057b8;
+
+
+}
+
+
+
+
+.registrar{
+
+
+border-left:6px solid #16a34a;
+
+
+}
+
+
+
+
+
+.version{
+
+
+text-align:center;
+
+margin-top:25px;
+
+font-size:13px;
+
+color:#64748b;
+
+
+}
+
+
 
 
 </style>
@@ -199,11 +271,12 @@ margin-top:20px;
 </head>
 
 
+
 <body>
 
 
-
 <div class="container">
+
 
 
 <div class="logo">
@@ -214,88 +287,56 @@ margin-top:20px;
 
 
 
+
+<h1>
+
+SELECOBA
+
+</h1>
+
+
+
+<div class="subtitulo">
+
+Sistema de Gestión de<br>
+
+Mantenimientos
+
+</div>
+
+
+
+
 <div class="card">
 
 
-<h2>
-Consulta de Mantenimiento
-</h2>
+
+<a 
+class="opcion consultar"
+
+href="consulta/consulta.html">
 
 
+<div class="icono">
 
-<input
-id="codigo"
-placeholder="Ingrese código del certificado">
-
-
-
-<button
-class="buscar"
-onclick="buscar()">
-
-Buscar
-
-</button>
-
-
-
-
-<div
-class="spinner"
-id="spinner">
-
-🔄 Consultando certificado...
+🔍
 
 </div>
 
 
+<div>
 
 
-<div
-id="resultado">
+<div class="titulo">
+
+CONSULTAR
 
 </div>
 
 
+<div class="descripcion">
 
-
-<button
-id="btnInfo"
-class="info"
-onclick="mostrarLogin()">
-
-Ver información técnica
-
-</button>
-
-
-
-
-
-<div
-class="login"
-id="login">
-
-
-<input
-id="usuario"
-placeholder="Usuario">
-
-
-<input
-id="password"
-type="password"
-placeholder="Contraseña">
-
-
-<button
-class="buscar"
-onclick="login()">
-
-Ingresar
-
-</button>
-
+Consultar certificados
 
 </div>
 
@@ -303,343 +344,71 @@ Ingresar
 </div>
 
 
+</a>
+
+
+
+
+
+<a
+
+class="opcion registrar"
+
+href="registro/registro.html">
+
+
+<div class="icono">
+
+📝
+
+</div>
+
+
+<div>
+
+
+<div class="titulo">
+
+REGISTRAR
+
+</div>
+
+
+<div class="descripcion">
+
+Registrar mantenimiento
+
+</div>
+
+
+</div>
+
+
+</a>
+
+
+
+
+
+
 </div>
 
 
 
 
+<div class="version">
 
-<script>
+Versión 1.0
 
+</div>
 
-// NUEVA API CLOUDFLARE
 
-const API =
-"https://selecoba-api.info-selecoba.workers.dev";
 
+</div>
 
-
-
-
-// ENTER PARA BUSCAR
-
-document
-.getElementById("codigo")
-.addEventListener(
-"keypress",
-function(e){
-
-if(e.key==="Enter"){
-
-buscar();
-
-}
-
-});
-
-
-
-
-
-
-async function buscar(){
-
-
-
-const codigo =
-document
-.getElementById("codigo")
-.value
-.trim();
-
-
-
-if(!codigo){
-
-return;
-
-}
-
-
-
-
-const spinner =
-document.getElementById("spinner");
-
-
-spinner.style.display="block";
-
-
-
-const resultado =
-document.getElementById("resultado");
-
-
-resultado.style.display="none";
-
-
-
-try{
-
-
-
-const respuesta =
-await fetch(
-
-API+
-"?codigo="+
-encodeURIComponent(codigo)
-
-);
-
-
-
-const data =
-await respuesta.json();
-
-
-
-mostrarResultado(data);
-
-
-
-}
-
-catch(error){
-
-
-
-resultado.style.display="block";
-
-
-resultado.className="error";
-
-
-resultado.innerHTML=
-"❌ Error de conexión con el servidor";
-
-
-
-}
-
-
-
-finally{
-
-
-spinner.style.display="none";
-
-
-}
-
-
-
-}
-
-
-
-
-
-
-
-
-function mostrarResultado(data){
-
-
-
-const box =
-document
-.getElementById("resultado");
-
-
-
-box.style.display="block";
-
-
-
-if(data.encontrado){
-
-
-
-box.className="ok";
-
-
-
-box.innerHTML=
-
-`
-
-<h3>
-✔ Certificado encontrado
-</h3>
-
-
-<b>Cliente:</b><br>
-${data.cliente}<br><br>
-
-
-<b>Equipo:</b><br>
-${data.equipo}<br><br>
-
-
-<b>Fecha mantenimiento:</b><br>
-${data.fecha}<br><br>
-
-
-<b>Próximo mantenimiento:</b><br>
-${data.proximo}
-
-`;
-
-
-
-document
-.getElementById("btnInfo")
-.style.display="block";
-
-
-
-}
-
-else{
-
-
-box.className="error";
-
-
-box.innerHTML=
-
-`
-❌ Certificado no encontrado
-`;
-
-
-
-document
-.getElementById("btnInfo")
-.style.display="none";
-
-
-}
-
-
-
-}
-
-
-
-
-
-
-
-
-function mostrarLogin(){
-
-
-document
-.getElementById("login")
-.style.display="block";
-
-
-}
-
-
-
-
-
-
-
-async function login(){
-
-
-
-const codigo =
-document
-.getElementById("codigo")
-.value;
-
-
-
-const usuario =
-document
-.getElementById("usuario")
-.value;
-
-
-
-const password =
-document
-.getElementById("password")
-.value;
-
-
-
-
-try{
-
-
-const respuesta =
-await fetch(
-
-API+
-"?accion=info"+
-"&codigo="+encodeURIComponent(codigo)+
-"&user="+encodeURIComponent(usuario)+
-"&pass="+encodeURIComponent(password)
-
-);
-
-
-
-const data =
-await respuesta.json();
-
-
-
-
-if(data.encontrado){
-
-
-alert(
-data.observaciones
-);
-
-
-}
-
-else{
-
-
-alert(
-data.mensaje
-);
-
-
-}
-
-
-
-}
-
-catch(error){
-
-
-alert(
-"Error de conexión"
-);
-
-
-}
-
-
-
-}
-
-
-
-</script>
 
 
 </body>
+
 
 </html>
