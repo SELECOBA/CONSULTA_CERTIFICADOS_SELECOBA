@@ -196,19 +196,7 @@ async function registrar(){
 
 if(!sesion.usuario){
 
-if(!/^[0-9]+$/.test(datos.oc)){
 
-
-alert(
-"La orden de compra solo debe contener números"
-);
-
-
-return;
-
-
-}
-  
 alert(
 "Debe iniciar sesión"
 );
@@ -222,7 +210,6 @@ return;
 
 
 
-
 const datos={
 
 
@@ -231,37 +218,35 @@ accion:"registrar",
 
 
 cliente:
+document.getElementById("cliente").value.trim(),
 
-cliente.value,
 
 
 oc:
+document.getElementById("oc").value.trim(),
 
-oc.value,
 
 
 equipo:
+document.getElementById("equipo").value.trim(),
 
-equipo.value,
 
 
 tipo:
+document.getElementById("tipo").value,
 
-tipo.value,
 
 
 observaciones:
+document.getElementById("observaciones").value.trim(),
 
-observaciones.value,
 
 
 usuario:
-
 sesion.usuario,
 
 
 nombre:
-
 sesion.nombre
 
 
@@ -272,7 +257,12 @@ sesion.nombre
 
 
 
+
+// VALIDAR CAMPOS OBLIGATORIOS
+
+
 if(
+
 
 !datos.cliente ||
 
@@ -299,10 +289,29 @@ return;
 
 
 
+// VALIDAR ORDEN DE COMPRA SOLO NUMEROS
+
+
+if(!/^[0-9]+$/.test(datos.oc)){
+
+
+alert(
+"La orden de compra solo debe contener números"
+);
+
+
+return;
+
+
+}
+
+
+
+
+
+
 document
-
 .getElementById("spinner")
-
 .style.display="block";
 
 
@@ -313,7 +322,7 @@ document
 try{
 
 
-const respuesta=
+const respuesta =
 
 await fetch(
 
@@ -325,9 +334,11 @@ method:"POST",
 
 headers:{
 
+
 "Content-Type":
 
 "application/json"
+
 
 },
 
@@ -336,17 +347,21 @@ body:
 
 JSON.stringify(datos)
 
-}
 
+}
 
 );
 
 
 
 
-const resultado=
+
+
+const resultado =
 
 await respuesta.json();
+
+
 
 
 
@@ -370,6 +385,7 @@ resultado.codigo
 limpiar();
 
 
+
 }
 
 else{
@@ -378,8 +394,8 @@ else{
 alert(resultado.mensaje);
 
 
-}
 
+}
 
 
 
@@ -388,11 +404,15 @@ alert(resultado.mensaje);
 catch(error){
 
 
+console.error(error);
+
+
 alert(
 
 "Error al registrar"
 
 );
+
 
 
 }
@@ -425,68 +445,15 @@ document
 function limpiar(){
 
 
+document.getElementById("cliente").value="";
 
-cliente.value="";
+document.getElementById("oc").value="";
 
-oc.value="";
+document.getElementById("equipo").value="";
 
-equipo.value="";
+document.getElementById("tipo").selectedIndex=0;
 
-tipo.value="";
-
-observaciones.value="";
-
-
-}
-
-//=========================================
-// FECHA AUTOMATICA
-//=========================================
-
-
-window.onload=function(){
-
-
-const fecha =
-document.getElementById("fecha");
-
-
-
-if(fecha){
-
-
-const hoy =
-new Date();
-
-
-
-const dia =
-String(
-hoy.getDate()
-)
-.padStart(2,"0");
-
-
-
-const mes =
-String(
-hoy.getMonth()+1
-)
-.padStart(2,"0");
-
-
-
-const anio =
-hoy.getFullYear();
-
-
-
-fecha.value =
-dia+"/"+mes+"/"+anio;
-
+document.getElementById("observaciones").value="";
 
 
 }
-
-
-};
