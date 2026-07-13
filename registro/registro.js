@@ -196,7 +196,19 @@ async function registrar(){
 
 if(!sesion.usuario){
 
+if(!/^[0-9]+$/.test(datos.oc)){
 
+
+alert(
+"La orden de compra solo debe contener números"
+);
+
+
+return;
+
+
+}
+  
 alert(
 "Debe iniciar sesión"
 );
