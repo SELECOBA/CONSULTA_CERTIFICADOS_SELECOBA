@@ -150,6 +150,12 @@ id="oc"
 
 placeholder="Orden de compra"
 
+type="number"
+
+inputmode="numeric"
+
+oninput="this.value=this.value.replace(/[^0-9]/g,'')"
+
 >
 
 
@@ -212,7 +218,9 @@ Fecha de mantenimiento
 
 id="fecha"
 
-type="date"
+type="text"
+
+readonly
 
 >
 
