@@ -2,258 +2,124 @@
 <html lang="es">
 
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
 <title>
 Registro de Mantenimiento SELECOBA
 </title>
-
-
 <link rel="stylesheet" href="registro.css">
-
-
 </head>
 
-
 <body>
-
-
 <div class="container">
-
-
-
-<div class="logo">
-
-<img src="../logo.png">
-
+    <div class="logo">
+        <img src="../logo.png">
+    </div>
+    <div class="card">
+        <h2>
+            Registro de Mantenimiento
+        </h2>
+        <!-- LOGIN -->
+        <div id="loginBox">
+            <h3>
+                Acceso de usuario
+            </h3>
+            <input
+                id="usuario"
+                placeholder="Usuario"
+            >
+            <input
+                id="password"
+                type="password"
+                placeholder="Contraseña"
+            >
+            <button
+                id="btnLogin"
+                class="btn azul"
+                onclick="iniciarSesion()"
+            >
+                Ingresar
+            </button>
+            <div
+                id="mensajeLogin"
+                class="mensajeLogin"
+            >
+            </div>
+        </div>
+        <!-- FORMULARIO -->
+        <div
+            id="formulario"
+            style="display:none;"
+        >
+            <!-- USUARIO ACTIVO -->
+            <div
+                id="usuarioActivo"
+                class="usuarioActivo"
+            >
+            </div>
+            <input
+                id="cliente"
+                placeholder="Cliente"
+                autocomplete="off"
+            >
+            <input
+                id="oc"
+                placeholder="Orden de compra"
+                type="text"
+                inputmode="numeric"
+                pattern="[0-9]*"
+                maxlength="10"
+                autocomplete="off"
+                oninput="this.value=this.value.replace(/[^0-9]/g,'')"
+            >
+            <input
+                id="equipo"
+                placeholder="Equipo intervenido"
+                autocomplete="off"
+            >
+            <select
+                id="tipo"
+                required
+            >
+                <option
+                    value=""
+                    selected
+                    disabled
+                >
+                    Seleccione el tipo de trabajo
+                </option>
+                <option value="Mnto. Preventivo">
+                    Mnto. Preventivo
+                </option>
+                <option value="Mnto. Correctivo">
+                    Mnto. Correctivo
+                </option>
+                <option value="Implementación">
+                    Implementación
+                </option>
+            </select>
+            <textarea
+                id="observaciones"
+                placeholder="Observaciones"
+                autocomplete="off"
+                >
+            </textarea>
+            <button
+                id="btnGuardar"
+                class="btn verde"
+                onclick="registrar()"
+            >
+                Guardar mantenimiento
+            </button>
+        </div>
+    </div>
+        <a
+        href="../index/index.html"
+        class="volver"
+    >
+        ← Volver al inicio
+    </a>
 </div>
-
-
-
-
-<div class="card">
-
-
-<h2>
-
-Registro de Mantenimiento
-
-</h2>
-
-
-
-
-<!-- LOGIN -->
-
-<div id="loginBox">
-
-
-<h3>
-Acceso de usuario
-</h3>
-
-
-
-<input
-
-id="usuario"
-
-placeholder="Usuario"
-
->
-
-
-
-<input
-
-id="password"
-
-type="password"
-
-placeholder="Contraseña"
-
->
-
-
-
-
-<button
-
-id="btnLogin"
-class="btn azul"
-onclick="iniciarSesion()"
-
->
-
-Ingresar
-
-</button>
-
-<div id="mensajeLogin" 
-class="mensajeLogin">
-</div>
-
-</div>
-
-
-
-<!-- FORMULARIO -->
-
-
-<div
-
-id="formulario"
-
-style="display:none;"
-
->
-<!-- USUARIO ACTIVO -->
-
-
-<div
-
-id="usuarioActivo"
-
-class="usuarioActivo"
-
->
-
-</div>
-
-
-<input
-
-id="cliente"
-
-placeholder="Cliente"
-
->
-
-
-
-<input
-
-id="oc"
-
-placeholder="Orden de compra"
-
-type="number"
-
-inputmode="numeric"
-
-oninput="this.value=this.value.replace(/[^0-9]/g,'')"
-
->
-
-
-
-<input
-
-id="equipo"
-
-placeholder="Equipo intervenido"
-
->
-
-
-
-<select id="tipo">
-
-
-<option value="">
-
-Tipo de trabajo
-
-</option>
-
-
-<option>
-
-Mnto. Preventivo
-
-</option>
-
-
-<option>
-
-Mnto. Correctivo
-
-</option>
-
-
-<option>
-
-Implementación
-
-</option>
-
-
-</select>
-
-<textarea
-
-id="observaciones"
-
-placeholder="Observaciones"
-
-></textarea>
-
-
-
-<button
-
-id="btnGuardar"
-
-class="btn verde"
-
-onclick="registrar()">
-
-Guardar mantenimiento
-
-</button>
-
-
-
-
-
-</div>
-
-
-
-
-</div>
-
-
-
-
-<a
-
-href="../index.html"
-
-class="volver"
-
->
-
-← Volver al inicio
-
-</a>
-
-
-
-
-</div>
-
-
-
-
 <script src="registro.js"></script>
-
-
 </body>
-
-
 </html>

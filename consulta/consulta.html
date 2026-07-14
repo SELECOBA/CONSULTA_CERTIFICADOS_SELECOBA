@@ -1,217 +1,115 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
 <title>
 Consulta Certificados SELECOBA
 </title>
-
-
 <link rel="stylesheet" href="consulta.css">
-
-
 </head>
-
-
-
 <body>
-
-
-
 <div class="container">
 
+    <!--==============================
+        LOGO
+    ==============================-->
 
+    <div class="logo">
+        <img src="../logo.png">
+    </div>
 
-<div class="logo">
+    <!--==============================
+        TARJETA
+    ==============================-->
 
-<img src="../logo.png">
+    <div class="card">
+        <h2>
+            Consulta de Mantenimiento
+        </h2>
 
+        <!--==============================
+            BÚSQUEDA
+        ==============================-->
+
+        <input
+            id="codigo"
+            placeholder="Ingrese código del certificado"
+            autocomplete="off"
+        >
+        <button
+            id="btnBuscar"
+            class="buscar"
+            onclick="buscarCertificado()"
+        >
+            🔍 Buscar
+        </button>
+        <div
+            id="spinner"
+            class="spinner"
+        >
+            🔄 Consultando certificado...
+        </div>
+        <div
+            id="resultado"
+        >
+        </div>
+
+        <!--==============================
+            INFORMACIÓN TÉCNICA
+        ==============================-->
+
+        <button
+            id="btnInfo"
+            class="info"
+            onclick="mostrarLogin()"
+        >
+            🔐 Ver información técnica
+        </button>
+
+        <!--==============================
+            LOGIN
+        ==============================-->
+
+        <div
+            id="login"
+            class="login"
+        >
+            <h3>
+                Acceso técnico
+            </h3>
+            <input
+                id="usuario"
+                placeholder="Usuario"
+                autocomplete="username"
+            >
+            <input
+                id="password"
+                type="password"
+                placeholder="Contraseña"
+                autocomplete="current-password"
+            >
+            <button
+                id="btnLogin"
+                class="buscar"
+                onclick="validarAcceso()"
+            >
+                Ingresar
+            </button>
+            <div
+                id="mensajeLogin"
+                class="mensajeLogin"
+            >
+            </div>
+        </div>
+    </div>
+    <a
+        href="../index/index.html"
+        class="volver"
+    >
+        ← Volver al inicio
+    </a>
 </div>
-
-
-
-<div class="card">
-
-
-
-<h2>
-
-Consulta de Mantenimiento
-
-</h2>
-
-
-
-
-<input
-
-id="codigo"
-
-placeholder="Ingrese código del certificado"
-
-autocomplete="off"
-
-
-
->
-
-
-
-<button
-
-class="buscar"
-
-onclick="buscarCertificado()"
-
->
-
-🔍 Buscar
-
-</button>
-
-
-
-
-<div
-
-id="spinner"
-
-class="spinner"
-
->
-
-🔄 Consultando certificado...
-
-</div>
-
-
-
-
-<div
-
-id="resultado"
-
->
-
-</div>
-
-
-
-
-
-<button
-
-id="btnInfo"
-
-class="info"
-
-onclick="mostrarLogin()"
-
->
-
-🔐 Ver información técnica
-
-</button>
-
-
-
-
-
-
-<div
-
-id="login"
-
-class="login"
-
->
-
-
-
-<h3>
-
-Acceso técnico
-
-</h3>
-
-
-
-<input
-
-id="usuario"
-
-placeholder="Usuario"
-
->
-
-
-
-<input
-
-id="password"
-
-type="password"
-
-placeholder="Contraseña"
-
->
-
-
-
-
-<button
-
-class="buscar"
-
-onclick="validarAcceso()"
-
->
-
-Ingresar
-
-</button>
-
-
-
-</div>
-
-
-
-
-</div>
-
-
-
-
-<a
-
-href="../index.html"
-
-class="volver"
-
->
-
-← Volver al inicio
-
-</a>
-
-
-
-
-</div>
-
-
-
 <script src="consulta.js"></script>
-
-
 </body>
-
-
 </html>

@@ -1,332 +1,178 @@
+/*=====================================
+    RESET
+=====================================*/
+
 *{
-
-box-sizing:border-box;
-
+    box-sizing:border-box;
 }
 
-
+/*=====================================
+    CUERPO
+=====================================*/
 
 body{
-
-margin:0;
-
-font-family:'Segoe UI',Arial;
-
-background:#f1f5f9;
-
-display:flex;
-
-justify-content:center;
-
-padding:30px;
-
-
+    margin:0;
+    font-family:'Segoe UI',Arial,sans-serif;
+    background:#f1f5f9;
+    display:flex;
+    justify-content:center;
+    padding:30px;
 }
 
-
+/*=====================================
+    CONTENEDOR
+=====================================*/
 
 .container{
-
-width:100%;
-
-max-width:430px;
-
-
+    width:100%;
+    max-width:430px;
 }
 
-
-
+/*=====================================
+    LOGO
+=====================================*/
 
 .logo{
-
-text-align:center;
-
-margin-bottom:20px;
-
+    text-align:center;
+    margin-bottom:20px;
 }
-
-
-
 .logo img{
-
-width:180px;
-
+    width:180px;
 }
 
-
+/*=====================================
+    TARJETA
+=====================================*/
 
 .card{
-
-background:white;
-
-padding:25px;
-
-border-radius:18px;
-
-box-shadow:
-
-0 10px 30px rgba(0,0,0,.12);
-
+    background:white;
+    padding:25px;
+    border-radius:18px;
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.12);
 }
 
-
+/*=====================================
+    TITULOS
+=====================================*/
 
 h2{
-
-text-align:center;
-
-color:#1e293b;
-
+    text-align:center;
+    color:#1e293b;
 }
 
-
-
+/*=====================================
+    CONTROLES
+=====================================*/
 
 input,
 select,
 textarea,
 button{
-
-
-width:100%;
-
-padding:13px;
-
-margin-top:12px;
-
-border-radius:10px;
-
-font-size:16px;
-
-
+    width:100%;
+    padding:13px;
+    margin-top:12px;
+    border-radius:10px;
+    font-size:16px;
 }
-
-
 
 input,
 select,
 textarea{
-
-
-border:1px solid #ddd;
-
-
+    border:1px solid #ddd;
 }
-
-
 
 textarea{
-
-
-height:100px;
-
-resize:none;
-
-
+    height:100px;
+    resize:none;
 }
 
-
+/*=====================================
+    BOTONES
+=====================================*/
 
 .btn{
-
-border:none;
-
-color:white;
-
-cursor:pointer;
-
+    width:100%;
+    padding:13px;
+    border:none;
+    border-radius:10px;
+    font-size:16px;
+    color:white;
+    cursor:pointer;
+    transition:.2s;
 }
 
-
-
-.azul{
-
-background:#0057b8;
-
+.btn.azul{
+    background:#0057B8;
 }
 
-
-
-.verde{
-
-background:#16a34a;
-
+.btn.azul:hover{
+    background:#00489A;
 }
 
-
-
-
-.usuarioActivo{
-
-
-background:#dcfce7;
-
-border-left:5px solid #16a34a;
-
-padding:12px;
-
-margin-bottom:15px;
-
-border-radius:10px;
-
+.btn.azul:disabled{
+    background:#6FA3E6;
+    cursor:not-allowed;
 }
 
-
-
-
-.spinner{
-
-display:none;
-
-text-align:center;
-
-margin-top:15px;
-
+.btn.verde{
+    background:#16A34A;
 }
 
-
-
-.volver{
-
-
-display:block;
-
-text-align:center;
-
-margin-top:20px;
-
-color:#0057b8;
-
-text-decoration:none;
-
-
+.btn.verde:hover{
+    background:#15803D;
 }
 
-.spinnerLogin{
-
-display:none;
-
-text-align:center;
-
-margin-top:15px;
-
-color:#0057b8;
-
-font-weight:bold;
-
+.btn.verde:disabled{
+    background:#7BC89B;
+    cursor:not-allowed;
 }
-
 
 button:disabled{
-
-opacity:0.6;
-
-cursor:not-allowed;
-
+    opacity:.7;
+    cursor:not-allowed;
 }
 
-/*=============================
-  MENSAJE LOGIN
-=============================*/
+/*=====================================
+    USUARIO ACTIVO
+=====================================*/
+
+.usuarioActivo{
+    background:#DCFCE7;
+    border-left:5px solid #16A34A;
+    padding:12px;
+    margin-bottom:15px;
+    border-radius:10px;
+}
+
+/*=====================================
+    MENSAJE LOGIN
+=====================================*/
 
 .mensajeLogin{
-
-display:none;
-
-margin-top:15px;
-
-padding:12px;
-
-border-radius:8px;
-
-background:#FEE2E2;
-
-border:1px solid #EF4444;
-
-color:#B91C1C;
-
-font-size:14px;
-
-text-align:center;
-
+    display:none;
+    margin-top:15px;
+    padding:12px;
+    border-radius:8px;
+    background:#FEE2E2;
+    border:1px solid #EF4444;
+    color:#B91C1C;
+    font-size:14px;
+    text-align:center;
 }
 
+/*=====================================
+    VOLVER
+=====================================*/
 
-
-/*=============================
-  BOTON AZUL
-=============================*/
-
-.btn.azul{
-
-background:#0057B8;
-
-color:white;
-
+.volver{
+    display:block;
+    text-align:center;
+    margin-top:20px;
+    color:#0057B8;
+    text-decoration:none;
 }
 
-
-
-.btn.azul:hover{
-
-background:#00489A;
-
-}
-
-
-
-.btn.azul:disabled{
-
-background:#8BB3E5;
-
-cursor:not-allowed;
-
-}
-
-.btn{
-
-width:100%;
-
-padding:13px;
-
-border:none;
-
-border-radius:10px;
-
-font-size:16px;
-
-cursor:pointer;
-
-transition:.2s;
-
-}
-
-
-
-.btn.azul{
-
-background:#0057B8;
-
-color:white;
-
-}
-
-
-
-.btn.azul:hover{
-
-background:#00489A;
-
-}
-
-
-
-.btn.azul:disabled{
-
-background:#6FA3E6;
-
-color:white;
-
-cursor:not-allowed;
-
+.volver:hover{
+    text-decoration:underline;
 }
