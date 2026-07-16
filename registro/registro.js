@@ -3,7 +3,7 @@
 //=========================================
 
 const API =
-"https://selecoba-api.info-selecoba.workers.dev";
+"https://pruebas.info-selecoba.workers.dev";
 
 //=========================================
 // SESIÓN

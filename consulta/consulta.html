@@ -75,6 +75,7 @@ Consulta Certificados SELECOBA
             id="login"
             class="login"
         >
+
             <h3>
                 Acceso técnico
             </h3>
@@ -101,6 +102,34 @@ Consulta Certificados SELECOBA
                 class="mensajeLogin"
             >
             </div>
+        </div>
+
+        <!--==============================
+            PANEL INFORMACIÓN TÉCNICA
+        ==============================-->
+
+        <div
+            id="informacionTecnica"
+            class="informacionTecnica"
+            style="display:none;"
+        >
+            <h3>
+                Información Técnica
+            </h3>
+            <label>
+                Historial del equipo
+            </label>
+            <textarea
+                id="historial"
+                readonly
+            ></textarea>
+            <button
+                id="btnGarantia"
+                class="garantia"
+                onclick="abrirGarantia()"
+            >
+                🛠 Registrar garantía
+            </button>
         </div>
     </div>
     <a

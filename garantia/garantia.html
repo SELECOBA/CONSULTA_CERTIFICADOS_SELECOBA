@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+Registro de Garantía - SELECOBA
+</title>
+<link rel="stylesheet" href="garantia.css">
+</head>
+<body>
+<div class="container">
+
+    <!--=================================
+            LOGO
+    =================================-->
+
+    <div class="logo">
+        <img src="../logo.png" alt="SELECOBA">
+    </div>
+
+    <!--=================================
+            TARJETA
+    =================================-->
+
+    <div class="card">
+        <h2>
+            Registro de Garantía
+        </h2>
+        <p class="subtitulo">
+            Complete la intervención realizada por garantía.
+        </p>
+
+        <!--=================================
+                DATOS DEL EQUIPO
+        =================================-->
+
+        <div class="datosEquipo">
+            <div class="dato">
+                <label>
+                    Código
+                </label>
+                <input
+                    id="codigo"
+                    readonly
+                >
+            </div>
+            <div class="dato">
+                <label>
+                    Cliente
+                </label>
+                <input
+                    id="cliente"
+                    readonly
+                >
+            </div>
+            <div class="dato">
+                <label>
+                    Equipo intervenido
+                </label>
+                <input
+                    id="equipo"
+                    readonly
+                >
+            </div>
+            <div class="dato">
+                <label>
+                    Técnico responsable
+                </label>
+                <input
+                    id="tecnico"
+                    readonly
+                >
+            </div>
+            <div class="dato">
+                <label>
+                    Cargo
+                </label>
+                <input
+                    id="cargo"
+                    readonly
+                >
+            </div>
+        </div>
+
+        <!--=================================
+                GARANTÍA
+        =================================-->
+
+        <h3>
+            Intervención realizada
+        </h3>
+        <textarea
+            id="detalle"
+            placeholder="Describa detalladamente la intervención realizada por garantía..."
+        ></textarea>
+
+        <!--=================================
+                BOTONES
+        =================================-->
+
+        <button
+            id="btnGuardar"
+            class="btnGuardar"
+            onclick="confirmarGarantia()"
+        >
+            🛠 Registrar garantía
+        </button>
+        <button
+            id="btnCancelar"
+            class="btnCancelar"
+            onclick="volverConsulta()"
+        >
+            ← Cancelar
+        </button>
+
+        <!--=================================
+                SPINNER
+        =================================-->
+
+        <div
+            id="spinner"
+            class="spinner"
+        >
+            Guardando información...
+        </div>
+    </div>
+</div>
+<script src="garantia.js"></script>
+</body>
+</html>

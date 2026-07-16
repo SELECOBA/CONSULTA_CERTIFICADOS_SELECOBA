@@ -8,7 +8,6 @@
 /*=====================================
     CUERPO
 =====================================*/
-
 body{
     margin:0;
     font-family:'Segoe UI',Arial,sans-serif;
@@ -21,7 +20,6 @@ body{
 /*=====================================
     CONTENEDOR
 =====================================*/
-
 .container{
     width:100%;
     max-width:420px;
@@ -30,7 +28,6 @@ body{
 /*=====================================
     LOGO
 =====================================*/
-
 .logo{
     text-align:center;
     margin-bottom:20px;
@@ -43,19 +40,16 @@ body{
 /*=====================================
     TARJETA
 =====================================*/
-
 .card{
     background:white;
     padding:25px;
     border-radius:18px;
-    box-shadow:
-    0 10px 30px rgba(0,0,0,.12);
+    box-shadow:0 10px 30px rgba(0,0,0,.12);
 }
 
 /*=====================================
     TITULOS
 =====================================*/
-
 h2{
     text-align:center;
     color:#1e293b;
@@ -64,9 +58,9 @@ h2{
 /*=====================================
     CONTROLES
 =====================================*/
-
 input,
-button{
+button,
+textarea{
     width:100%;
     padding:13px;
     margin-top:12px;
@@ -74,14 +68,15 @@ button{
     font-size:16px;
 }
 
-input{
+input,
+textarea{
     border:1px solid #ddd;
+    font-family:inherit;
 }
 
 /*=====================================
     BOTONES
 =====================================*/
-
 button{
     border:none;
     cursor:pointer;
@@ -117,10 +112,23 @@ button{
     cursor:not-allowed;
 }
 
+.garantia{
+    background:#F59E0B;
+    color:white;
+}
+
+.garantia:hover{
+    background:#D97706;
+}
+
+.garantia:disabled{
+    background:#F8C56B;
+    cursor:not-allowed;
+}
+
 /*=====================================
     SPINNER
 =====================================*/
-
 .spinner{
     display:none;
     text-align:center;
@@ -130,7 +138,6 @@ button{
 /*=====================================
     RESULTADO
 =====================================*/
-
 #resultado{
     display:none;
     margin-top:20px;
@@ -151,7 +158,6 @@ button{
 /*=====================================
     LOGIN
 =====================================*/
-
 .login{
     display:none;
     margin-top:20px;
@@ -162,7 +168,6 @@ button{
 /*=====================================
     MENSAJE LOGIN
 =====================================*/
-
 .mensajeLogin{
     display:none;
     margin-top:15px;
@@ -176,9 +181,39 @@ button{
 }
 
 /*=====================================
+    INFORMACION TECNICA
+=====================================*/
+.informacionTecnica{
+    display:none;
+    margin-top:20px;
+    padding-top:20px;
+    border-top:1px solid #ddd;
+}
+
+.informacionTecnica h3{
+    margin-bottom:15px;
+    text-align:center;
+    color:#1e293b;
+}
+
+.informacionTecnica label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:bold;
+    color:#334155;
+}
+
+#historial{
+    min-height:220px;
+    resize:vertical;
+    background:#F8FAFC;
+    font-size:14px;
+    line-height:1.5;
+}
+
+/*=====================================
     ENLACE VOLVER
 =====================================*/
-
 .volver{
     display:block;
     text-align:center;
