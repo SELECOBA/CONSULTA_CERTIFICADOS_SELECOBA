@@ -176,8 +176,3 @@ button:disabled{
 .volver:hover{
     text-decoration:underline;
 }
-
-/* Fuerza a que el texto del input de usuario se dibuje visualmente en mayúsculas */
-#usuario {
-    text-transform: uppercase;
-}
